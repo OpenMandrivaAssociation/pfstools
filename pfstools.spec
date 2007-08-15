@@ -75,7 +75,7 @@ perl -pi -e 's|QT_IS_STATIC=\`ls \$QTDIR/lib/\*\.a 2> /dev/null\`||' configure
 # fix QTDIR && QTLIBDIR 
 perl -pi -e "s,DIR/lib,DIR/%_lib," configure
 %configure
-%make
+make
 
 %install
 %makeinstall_std
