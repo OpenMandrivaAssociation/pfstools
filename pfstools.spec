@@ -1,10 +1,11 @@
 %define name     pfstools
-%define version  1.5
+%define version  1.6.2
 %define release %mkrel 1
 
-%define lib_name_orig libpfs
-%define lib_major 1.2
-%define lib_name %mklibname pfs %{lib_major}
+%define libname_orig	libpfs
+%define major		1.2
+%define libname		%mklibname pfs %{major}
+%define develname	%mklibname pfs -d
 
 %define octave_version %(octave --version | head -n 1 | awk '{print $4}')
 
@@ -12,9 +13,9 @@ Summary: High Dynamic Range Images and Video manipulation tools
 Name:           %{name}
 Version:        %{version}
 Release:        %{release}
-License: GPL/LGPL
+License: GPLv2+ and LGPLv2+
 Group: Graphics
-Source: http://prdownloads.sourceforge.net/pfstools/%{name}-%{version}.tar.bz2
+Source: http://prdownloads.sourceforge.net/pfstools/%{name}-%{version}.tar.gz
 URL: http://www.mpi-inf.mpg.de/resources/pfstools/
 BuildRoot: %{_tmppath}/%{name}-root
 BuildRequires: blas-devel
@@ -35,23 +36,24 @@ frames. All programs in the package exchange data using a simple generic file
 format (pfs) for HDR data. The concept of the pfstools is similar to netpbm
 package for low-dynamic range images.
 
-%package -n     %{lib_name}
+%package -n     %{libname}
 Summary: 	Library for %name
 Group: 		System/Libraries
-%description -n %{lib_name}
+%description -n %{libname}
 This package contain the library needed to run programs linked 
-with %lib_name.
+with %libname.
 
-%package -n     %{lib_name}-devel
-Summary:	Headers for developing programs that will use %{lib_name}
+%package -n     %{develname}
+Summary:	Headers for developing programs that will use %{libname}
 Group:		Development/C++
-Requires:       %{lib_name} = %{version}
-Provides:       %{lib_name_orig}-devel = %{version}-%{release}
+Requires:       %{libname} = %{version}
+Provides:       %{libname_orig}-devel = %{version}-%{release}
 Provides:       %{name}-devel = %{version}-%{release}
+Obsoletes:	%{mklibname pfs 1.2 -d}
 
-%description -n %{lib_name}-devel
+%description -n %{develname}
 This package contains the headers that programmers will need to develop 
-application which will use %lib_name_orig
+application which will use %libname_orig
 
 %prep
 %setup -q
@@ -73,25 +75,25 @@ perl -pi -e "s,DIR/lib,DIR/%_lib," configure
 chmod 644 %{buildroot}/%_datadir/octave/%octave_version/site/m/pfstools/*.m
 chmod 644 %{buildroot}/%{_libdir}/*.la
 
-%post -n %{lib_name} -p /sbin/ldconfig
-%postun -n %{lib_name} -p /sbin/ldconfig
+%post -n %{libname} -p /sbin/ldconfig
+%postun -n %{libname} -p /sbin/ldconfig
 
 %clean
 rm -rf %{buildroot}
 
 %files
 %defattr(-, root, root)
-%doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO
+%doc AUTHORS ChangeLog INSTALL NEWS README TODO
 %{_bindir}/*
 %{_libdir}/octave/%octave_version/site/oct/%_target_platform/pfstools
 %_datadir/octave/%octave_version/site/m/pfstools
 %{_mandir}/man?/*
 
-%files -n %{lib_name}
+%files -n %{libname}
 %{_libdir}/*.so.*
 
-%files -n %{lib_name}-devel
-%{_includedir}/pfs-%lib_major
+%files -n %{develname}
+%{_includedir}/pfs-%major
 %{_libdir}/pkgconfig/*.pc
 %{_libdir}/*.a
 %{_libdir}/*.so
