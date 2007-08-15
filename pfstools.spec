@@ -16,6 +16,9 @@ Release:        %{release}
 License: GPLv2+ and LGPLv2+
 Group: Graphics
 Source: http://prdownloads.sourceforge.net/pfstools/%{name}-%{version}.tar.gz
+# Add -lpthread to OPENEXR_LIBS: fixes 'undefined reference to 
+# sem_init' etc build errors - AdamW 2007/08
+Patch0: pfstools-1.6.2-pthread.patch
 URL: http://www.mpi-inf.mpg.de/resources/pfstools/
 BuildRoot: %{_tmppath}/%{name}-root
 BuildRequires: blas-devel
@@ -27,6 +30,7 @@ BuildRequires: libtiff-devel
 BuildRequires: qt3-devel
 BuildRequires: hdf5-devel
 BuildRequires: fftw3-devel
+BuildRequires: autoconf
 Requires: octave = %octave_version
 
 %description
@@ -57,8 +61,12 @@ application which will use %libname_orig
 
 %prep
 %setup -q
+%patch0 -p1 -b .pthread
 
 %build
+# needed by patch0
+autoreconf
+
 export PATH="$QTDIR/bin:$PATH"
 export CXX="g++ %optflags -fPIC"
 export LDFLAGS="-L$QTDIR/%{_lib}"
