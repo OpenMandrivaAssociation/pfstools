@@ -7,7 +7,7 @@
 %define libname		%mklibname pfs %{major}
 %define develname	%mklibname pfs -d
 
-%define octave_version %(octave --version | head -n 1 | awk '{print $4}')
+%define octave_version 2.1.73
 
 Summary: High Dynamic Range Images and Video manipulation tools
 Name:           %{name}
