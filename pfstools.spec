@@ -16,9 +16,6 @@ Release:        %{release}
 License: GPLv2+ and LGPLv2+
 Group: Graphics
 Source: http://prdownloads.sourceforge.net/pfstools/%{name}-%{version}.tar.gz
-# Add -lpthread to OPENEXR_LIBS: fixes 'undefined reference to 
-# sem_init' etc build errors - AdamW 2007/08
-Patch0: pfstools-1.6.2-pthread.patch
 URL: http://www.mpi-inf.mpg.de/resources/pfstools/
 BuildRoot: %{_tmppath}/%{name}-root
 BuildRequires: blas-devel
@@ -61,7 +58,6 @@ application which will use %libname_orig
 
 %prep
 %setup -q
-%patch0 -p1 -b .pthread
 
 %build
 # needed by patch0
