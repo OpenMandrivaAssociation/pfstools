@@ -28,6 +28,7 @@ BuildRequires: qt3-devel
 BuildRequires: hdf5-devel
 BuildRequires: fftw3-devel
 BuildRequires: readline-devel
+BuildRequires: ncurses-devel
 Requires: octave = %octave_version
 
 %description
