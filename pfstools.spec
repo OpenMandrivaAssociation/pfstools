@@ -27,7 +27,7 @@ BuildRequires: libtiff-devel
 BuildRequires: qt3-devel
 BuildRequires: hdf5-devel
 BuildRequires: fftw3-devel
-BuildRequires: autoconf
+BuildRequires: readline-devel
 Requires: octave = %octave_version
 
 %description
@@ -60,9 +60,6 @@ application which will use %libname_orig
 %setup -q
 
 %build
-# needed by patch0
-# autoreconf
-
 export PATH="$QTDIR/bin:$PATH"
 export CXX="g++ %optflags -fPIC"
 export LDFLAGS="-L$QTDIR/%{_lib}"
