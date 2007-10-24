@@ -61,7 +61,7 @@ application which will use %libname_orig
 
 %build
 # needed by patch0
-autoreconf
+# autoreconf
 
 export PATH="$QTDIR/bin:$PATH"
 export CXX="g++ %optflags -fPIC"
