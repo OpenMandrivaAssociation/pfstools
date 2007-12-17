@@ -17,7 +17,6 @@ License: GPLv2+ and LGPLv2+
 Group: Graphics
 Source: http://prdownloads.sourceforge.net/pfstools/%{name}-%{version}.tar.gz
 URL: http://www.mpi-inf.mpg.de/resources/pfstools/
-BuildRoot: %{_tmppath}/%{name}-root
 BuildRequires: blas-devel
 BuildRequires: lapack-devel
 BuildRequires: octave
