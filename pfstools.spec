@@ -1,13 +1,12 @@
 %define name     pfstools
 %define version  1.6.2
-%define release %mkrel 1
+%define release %mkrel 2
 
 %define libname_orig	libpfs
 %define major		1.2
 %define libname		%mklibname pfs %{major}
 %define develname	%mklibname pfs -d
-
-%define octave_version 2.1.73
+%define octave_version %(rpm -q octave --queryformat %{EPOCH}:%{VERSION})
 
 Summary: High Dynamic Range Images and Video manipulation tools
 Name:           %{name}
@@ -29,7 +28,7 @@ BuildRequires: hdf5-devel
 BuildRequires: fftw3-devel
 BuildRequires: readline-devel
 BuildRequires: ncurses-devel
-Requires: octave = %octave_version
+Requires:	octave = %octave_version
 
 %description
 pfstools package is a set of command line (and one GUI) programs for reading,
@@ -68,7 +67,7 @@ export LDFLAGS="-L$QTDIR/%{_lib}"
 perl -pi -e 's|QT_IS_STATIC=\`ls \$QTDIR/lib/\*\.a 2> /dev/null\`||' configure
 # fix QTDIR && QTLIBDIR 
 perl -pi -e "s,DIR/lib,DIR/%_lib," configure
-%configure
+%configure2_5x
 make
 
 %install
