@@ -1,12 +1,12 @@
 %define name     pfstools
-%define version  1.6.2
-%define release %mkrel 2
+%define version  1.6.5
+%define release %mkrel 1
 
 %define libname_orig	libpfs
 %define major		1.2
 %define libname		%mklibname pfs %{major}
 %define develname	%mklibname pfs -d
-%define octave_version %(rpm -q octave --queryformat %{EPOCH}:%{VERSION})
+%define octave_version %(rpm -q octave --queryformat %{VERSION})
 
 Summary: High Dynamic Range Images and Video manipulation tools
 Name:           %{name}
@@ -19,7 +19,7 @@ URL: http://www.mpi-inf.mpg.de/resources/pfstools/
 BuildRoot: %{_tmppath}/%{name}-root
 BuildRequires: blas-devel
 BuildRequires: lapack-devel
-BuildRequires: octave
+BuildRequires: octave-devel
 BuildRequires: OpenEXR-devel
 BuildRequires: netpbm-devel
 BuildRequires: libtiff-devel
@@ -87,8 +87,8 @@ rm -rf %{buildroot}
 %defattr(-, root, root)
 %doc AUTHORS ChangeLog INSTALL NEWS README TODO
 %{_bindir}/*
-#%{_libdir}/octave/%octave_version/site/oct/%_target_platform/pfstools
-#%_datadir/octave/%octave_version/site/m/pfstools
+%{_libdir}/octave/*/site/oct/%_target_platform/%name
+%{_datadir}/octave/*/site/m/%name
 %{_mandir}/man?/*
 
 %files -n %{libname}
