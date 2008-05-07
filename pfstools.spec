@@ -72,9 +72,10 @@ perl -pi -e "s,DIR/lib,DIR/%_lib," configure
 make
 
 %install
+rm -rf %{buildroot}
 %makeinstall_std
 
-chmod 644 %{buildroot}/%_datadir/octave/%octave_version/site/m/pfstools/*.m
+#chmod 644 %{buildroot}/%_datadir/octave/%octave_version/site/m/pfstools/*.m
 chmod 644 %{buildroot}/%{_libdir}/*.la
 
 %post -n %{libname} -p /sbin/ldconfig
@@ -87,8 +88,8 @@ rm -rf %{buildroot}
 %defattr(-, root, root)
 %doc AUTHORS ChangeLog INSTALL NEWS README TODO
 %{_bindir}/*
-%{_libdir}/octave/%octave_version/site/oct/%_target_platform/pfstools
-%_datadir/octave/%octave_version/site/m/pfstools
+#%{_libdir}/octave/%octave_version/site/oct/%_target_platform/pfstools
+#%_datadir/octave/%octave_version/site/m/pfstools
 %{_mandir}/man?/*
 
 %files -n %{libname}
