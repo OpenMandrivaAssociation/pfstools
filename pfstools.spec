@@ -62,7 +62,7 @@ application which will use %libname_orig
 %patch0 -p 1
 
 %build
-export QTDIR="%{_libdir}/qt3"
+export QTDIR="%{_prefix}/lib/qt3"
 export PATH="$QTDIR/bin:$PATH"
 export CXX="g++ %optflags -fPIC"
 export LDFLAGS="-L$QTDIR/%{_lib}"
