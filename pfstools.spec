@@ -1,6 +1,6 @@
 %define name     pfstools
-%define version  1.6.5
-%define release %mkrel 2
+%define version  1.7.0
+%define release %mkrel 1
 
 %define libname_orig	libpfs
 %define major		1.2
@@ -14,9 +14,9 @@ Version:        %{version}
 Release:        %{release}
 License: GPLv2+ and LGPLv2+
 Group: Graphics
-Source: http://prdownloads.sourceforge.net/pfstools/%{name}-%{version}.tar.gz
 URL: http://www.mpi-inf.mpg.de/resources/pfstools/
-BuildRoot: %{_tmppath}/%{name}-root
+Source: http://prdownloads.sourceforge.net/pfstools/%{name}-%{version}.tar.gz
+Patch0: pfstools-1.6.5-fix-format-errors.patch
 BuildRequires: blas-devel
 BuildRequires: lapack-devel
 BuildRequires: octave-devel
@@ -29,6 +29,7 @@ BuildRequires: fftw3-devel
 BuildRequires: readline-devel
 BuildRequires: ncurses-devel
 Requires:	octave = %octave_version
+BuildRoot: %{_tmppath}/%{name}-%{version}
 
 %description
 pfstools package is a set of command line (and one GUI) programs for reading,
@@ -58,8 +59,10 @@ application which will use %libname_orig
 
 %prep
 %setup -q
+%patch0 -p 1
 
 %build
+export QTDIR="%{_libdir}/qt3"
 export PATH="$QTDIR/bin:$PATH"
 export CXX="g++ %optflags -fPIC"
 export LDFLAGS="-L$QTDIR/%{_lib}"
