@@ -1,6 +1,6 @@
 %define name     pfstools
 %define version  1.7.0
-%define release %mkrel 2
+%define release %mkrel 3
 
 %define libname_orig	libpfs
 %define major		1.2
