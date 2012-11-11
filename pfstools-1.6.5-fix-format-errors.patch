@@ -1,0 +1,12 @@
+diff -Naur pfstools-1.6.5/src/pfs/pfs.cpp pfstools-1.6.5-fix-format-errors/src/pfs/pfs.cpp
+--- pfstools-1.6.5/src/pfs/pfs.cpp	2008-01-01 14:01:21.000000000 +0100
++++ pfstools-1.6.5-fix-format-errors/src/pfs/pfs.cpp	2009-02-27 12:56:47.000000000 +0100
+@@ -525,7 +525,7 @@
+   TagList::const_iterator it;
+   fprintf( out, "%d" PFSEOL, tags->getSize() );
+   for( it = tags->tagsBegin(); it != tags->tagsEnd(); it++ ) {
+-    fprintf( out, it->c_str() );
++    fprintf( out, "%s", it->c_str() );
+     fprintf( out, PFSEOL );
+   }
+ }
