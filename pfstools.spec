@@ -14,7 +14,7 @@ Version:        %{version}
 Release:        %{release}
 License: GPLv2+ and LGPLv2+
 Group: Graphics
-URL: http://www.mpi-inf.mpg.de/resources/pfstools/
+URL: https://www.mpi-inf.mpg.de/resources/pfstools/
 Source: http://prdownloads.sourceforge.net/pfstools/%{name}-%{version}.tar.gz
 Patch0: pfstools-1.6.5-fix-format-errors.patch
 BuildRequires: blas-devel
