@@ -17,6 +17,11 @@ Group: Graphics
 URL: https://www.mpi-inf.mpg.de/resources/pfstools/
 Source: http://prdownloads.sourceforge.net/pfstools/%{name}-%{version}.tar.gz
 Patch0: pfstools-1.6.5-fix-format-errors.patch
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires: blas-devel
 BuildRequires: lapack-devel
 BuildRequires: octave-devel
